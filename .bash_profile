@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Base paths
 PATH=/usr/bin:/usr/sbin
 [ -d /sbin ] && PATH=/sbin:$PATH
 [ -d /bin ] && PATH=/bin:$PATH
