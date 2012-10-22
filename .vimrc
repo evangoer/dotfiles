@@ -10,7 +10,7 @@ endif
 set autoread
 set encoding=utf-8
 set number
-set backspace=indent,eol,start
+set bs=2
 set ignorecase 
 
 " Always convert tabs to 4 spaces. 
