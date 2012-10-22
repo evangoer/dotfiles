@@ -28,7 +28,7 @@ export GREP_OPTIONS='--color=auto'
 alias vi=vim
 alias :q=exit 
 alias ZZ=exit 
-alias config='git --git-dir=$HOME/.config.git/ --work-tree=$HOME'
+alias dotfiles='git --git-dir=$HOME/.config.git/ --work-tree=$HOME'
 
 # Convenience aliases for MacPorts packages
 if [ -f /opt/local/bin/mysqladmin5 ]; then
