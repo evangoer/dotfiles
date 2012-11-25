@@ -28,6 +28,11 @@ export GREP_OPTIONS='--color=auto'
 alias vi=vim
 alias :q=exit 
 alias ZZ=exit 
+
+# Scheme for managing dotfiles via git without making ~ a git repo.
+# When updating dotfiles, use 'dotfiles <gitcmd>', not 'git <gitcmd>'.
+# Derived from http://silas.sewell.org/blog/2009/03/08/profile-management-with-git-and-github/
+# and http://necoro.wordpress.com/2009/10/08/managing-your-configuration-files-with-git-and-stgit/
 alias dotfiles='git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
 
 # Convenience aliases for MacPorts packages
