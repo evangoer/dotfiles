@@ -12,7 +12,10 @@ if [ -d /opt/local ]; then
     PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
     export MANPATH=/opt/local/man:/opt/local/share/man:$MANPATH
 fi
-[ -d /home/y ] && PATH=/home/y/bin:$PATH
+if [ -d /home/y ]; then 
+    PATH=/home/y/bin:$PATH
+    export JS_CMD='/home/y/bin/node --file_accessdir=/ --open_basedir=/'  # For jslint.vim with ynode_js
+fi
 export PATH
 
 function branch() {
