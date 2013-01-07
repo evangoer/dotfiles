@@ -20,7 +20,16 @@ function branch() {
     [[ $BRANCH != '' ]] && echo "on $BRANCH "
 }
 
-PS1='\t \u@\h:\w $(branch)\$ '
+# If I'm not 'evan' or 'goer', display user@ in the prompt
+ALT_USER=''; [[ `whoami` != 'evan' && `whoami` != 'goer' ]] && ALT_USER="${WHOAMI}@"
+
+# Indicate whether we're in a chroot, virtualenv, etc. 
+VIRTUAL=''
+if [[ $YROOT_NAME != '' ]]; then
+     VIRTUAL="[$YROOT_NAME]"
+fi
+
+PS1='\t ${ALT_USER}\h${VIRTUAL}:\w $(branch)\$ '
 
 export EDITOR=vim
 export CLICOLOR=true
