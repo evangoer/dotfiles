@@ -1,2 +1,2 @@
-/*jslint browser: true, node: true, devel: true */
+/*jslint browser: true, node: true, devel: true, sloppy: true */
 /*global YUI, Y */
