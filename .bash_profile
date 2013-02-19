@@ -18,6 +18,8 @@ if [ -d /home/y ]; then
 fi
 export PATH
 
+set -o vi
+
 function branch() {
     BRANCH=`git branch 2>/dev/null | grep '\*' | awk '{print $2}'`
     [[ $BRANCH != '' ]] && echo "on $BRANCH "
