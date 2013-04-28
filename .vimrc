@@ -18,6 +18,11 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 
+" Display invisibles (just barely)
+set list
+set listchars=tab:▸\ ,eol:¬
+let g:solarized_visibility="low"
+
 " Make tab completion behave more like the shell.
 set wildmode=longest,list
 
