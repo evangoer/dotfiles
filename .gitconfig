@@ -1,3 +1,11 @@
 [user]
 	name = Evan Goer
 	email = evan@goer.org
+	email = goer@yahoo-inc.com
+[core]
+	excludesfile = /Users/goer/.gitignore_global
+	autocrlf = input
+[color]
+    ui = auto
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
