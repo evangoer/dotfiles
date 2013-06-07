@@ -1,10 +1,10 @@
 [user]
-	name = Evan Goer
-	email = evan@goer.org
-	email = goer@yahoo-inc.com
+    name = Evan Goer
+    email = evan@goer.org
+    email = goer@yahoo-inc.com
 [core]
-	excludesfile = /Users/goer/.gitignore_global
-	autocrlf = input
+    excludesfile = /Users/goer/.gitignore_global
+    autocrlf = input
 [color]
     ui = auto
 [alias]
