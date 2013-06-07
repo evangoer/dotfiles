@@ -1,9 +1,8 @@
 [user]
     name = Evan Goer
     email = evan@goer.org
-    email = goer@yahoo-inc.com
 [core]
-    excludesfile = /Users/goer/.gitignore_global
+    excludesfile = ~/.gitignore_global
     autocrlf = input
 [color]
     ui = auto
