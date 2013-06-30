@@ -1,3 +1,7 @@
 [user]
 	name = Evan Goer
 	email = evan@goer.org
+[core]
+	excludesfile = /Users/evan/.gitignore_global
+[push]
+	default = simple
