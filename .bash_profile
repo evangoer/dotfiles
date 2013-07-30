@@ -12,6 +12,7 @@ if [ -d /opt/local ]; then
     PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
     export MANPATH=/opt/local/man:/opt/local/share/man:$MANPATH
 fi
+[ -d $HOME/.rvm/bin ] && PATH=$HOME/.rvm/bin:$PATH
 
 export PATH
 
@@ -56,3 +57,5 @@ fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
