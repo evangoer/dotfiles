@@ -24,7 +24,7 @@ function branch() {
 }
 
 # If I'm not 'evan' or 'goer', display user@ in the prompt
-ALT_USER=''; [[ `whoami` != 'evan' && `whoami` != 'goer' ]] && ALT_USER="${WHOAMI}@"
+ALT_USER=''; [[ `whoami` != 'evan' && `whoami` != 'egoer' ]] && ALT_USER=`whoami`@
 
 # Indicate whether we're in a chroot, virtualenv, etc. 
 VIRTUAL=''
