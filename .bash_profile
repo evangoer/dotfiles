@@ -13,6 +13,7 @@ if [ -d /opt/local ]; then
     export MANPATH=/opt/local/man:/opt/local/share/man:$MANPATH
 fi
 [ -d $HOME/.rvm/bin ] && PATH=$HOME/.rvm/bin:$PATH
+[ -d /opt/local/lib/mysql55/bin ] && PATH=/opt/local/lib/mysql55/bin:$PATH
 
 export PATH
 
@@ -37,6 +38,7 @@ PS1='\t ${ALT_USER}\h${VIRTUAL}:\w $(branch)\$ '
 export EDITOR=vim
 export CLICOLOR=true
 export GREP_OPTIONS='--color=auto'
+export P4PORT=perforce.corp.intuit.net:2000
 
 alias vi=vim
 alias :q=exit 
