@@ -27,13 +27,13 @@ function branch() {
 # If I'm not 'evan' or 'goer', display user@ in the prompt
 ALT_USER=''; [[ `whoami` != 'evan' && `whoami` != 'egoer' ]] && ALT_USER=`whoami`@
 
-# Indicate whether we're in a chroot, virtualenv, etc. 
-VIRTUAL=''
-if [[ $YROOT_NAME != '' ]]; then
-     VIRTUAL="[$YROOT_NAME]"
-fi
+# Indicate whether we're in a chroot, virtualenv, rvm, etc.
+function virtual() {
+  RVM_PROMPT=`rvm-prompt v g 2>/dev/null`
+  [[ $RVM_PROMPT != '' ]] && echo "[$RVM_PROMPT]"
+}
 
-PS1='\t ${ALT_USER}\h${VIRTUAL}:\w $(branch)\$ '
+PS1='\t ${ALT_USER}\h$(virtual):\w $(branch)\$ '
 
 export EDITOR=vim
 export CLICOLOR=true
