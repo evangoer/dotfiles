@@ -11,13 +11,16 @@ set autoread
 set encoding=utf-8
 set number
 set bs=2
-set ignorecase 
+set ignorecase
 
-" Always convert tabs to 4 spaces. 
+" Always convert tabs to 4 spaces.
 set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+
+" Filetype aliases 
+au BufRead,BufNewFile *.md set filetype=markdown
 
 " Display invisibles (just barely)
 set list
@@ -31,11 +34,11 @@ set wildmode=longest,list
 set splitbelow
 set splitright
 
-" Use solarized, with hack for OS X 10.6 terminals that lack 256 colors 
+" Use solarized, with hack for OS X 10.6 terminals that lack 256 colors
 if $TERM=="xterm-color"
     color desert
 else
     set t_Co=256
     set background=dark
     color solarized
-endif 
+endif
