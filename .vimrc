@@ -19,9 +19,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-" Filetype aliases 
-au BufRead,BufNewFile *.md set filetype=markdown
-
 " Display invisibles (just barely)
 set list
 set listchars=tab:▸\ ,eol:¬
