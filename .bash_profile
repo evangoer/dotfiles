@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Add any local (not in git) bash config
+[ -f ~/.bashrc ] && source ~/.bashrc
+
 # Base paths
 PATH=/usr/bin:/usr/sbin
 [ -d /sbin ] && PATH=/sbin:$PATH
