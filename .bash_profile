@@ -4,7 +4,7 @@
 [ -f ~/.bashrc ] && source ~/.bashrc
 
 # Base paths
-PATH=/usr/bin:/usr/sbin
+PATH=$PATH:/usr/bin:/usr/sbin
 [ -d /sbin ] && PATH=/sbin:$PATH
 [ -d /bin ] && PATH=/bin:$PATH
 [ -d /usr/local ] && PATH=/usr/local/bin:/usr/local/sbin:$PATH
