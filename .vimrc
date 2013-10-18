@@ -1,9 +1,10 @@
 syntax on
 
-" Detect filetypes, set indent style and plugins
+" Detect filetypes & set indent style, plugins, filetype overrides
 if has("autocmd")
     filetype indent on
     filetype plugin on
+    autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
 endif
 
 " Bread and butter settings.
@@ -13,11 +14,8 @@ set number
 set bs=2
 set ignorecase
 
-" Always convert tabs to 4 spaces.
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+" Default soft tabs, 4 spaces.
+set ts=4 sts=4 sw=4 expandtab
 
 " Display invisibles (just barely)
 set list
