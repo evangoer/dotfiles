@@ -29,6 +29,12 @@ set wildmode=longest,list
 set splitbelow
 set splitright
 
+" Easier window movement
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
 " Use solarized, with hack for OS X 10.6 terminals that lack 256 colors
 if $TERM=="xterm-color"
     color desert
