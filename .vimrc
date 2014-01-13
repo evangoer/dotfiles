@@ -13,6 +13,7 @@ set encoding=utf-8
 set number
 set bs=2
 set ignorecase
+set textwidth=80
 
 " Default soft tabs, 4 spaces.
 set ts=4 sts=4 sw=4 expandtab
