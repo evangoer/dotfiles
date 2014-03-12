@@ -47,7 +47,6 @@ PS1='\t ${ALT_USER}\h$(virtual):\w $(branch)\$ '
 export EDITOR=vim
 export CLICOLOR=true
 export GREP_OPTIONS='--color=auto'
-export P4PORT=perforce.corp.intuit.net:2000
 
 alias vi=vim
 alias :q=exit 
