@@ -21,6 +21,11 @@ fi
 
 export PATH
 
+
+export OS_TENANT_NAME=csi-tenant-egoer
+export OS_AUTH_URL=https://mr-keystone.isg.apple.com:5000/v2.0/
+export OS_USERNAME=egoer # TODO change to $USER
+
 set -o vi
 
 function branch() {
