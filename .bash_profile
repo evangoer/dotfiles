@@ -24,7 +24,7 @@ export PATH
 
 export OS_TENANT_NAME=csi-tenant-egoer
 export OS_AUTH_URL=https://mr-keystone.isg.apple.com:5000/v2.0/
-export OS_USERNAME=egoer # TODO change to $USER
+export OS_USERNAME=$USER
 
 set -o vi
 
@@ -55,6 +55,12 @@ alias ZZ=exit
 # Scheme for managing dotfiles via git without making ~ a git repo.
 # When updating dotfiles, use 'dotfiles <gitcmd>', not 'git <gitcmd>'.
 # When adding a NEW dotfile, use the -f option (force) since by default, all files are ignored.
+#
+# 1. git clone git@github.com:evangoer/dotfiles.git
+# 2. mv dotfiles/.git ~/.dotfiles.git
+# 3. [optional] avoid clobbering old dotfiles (copy or rename as necessary)
+# 4. cp -R dotfiles/.* ~
+#
 # Derived from http://silas.sewell.org/blog/2009/03/08/profile-management-with-git-and-github/
 # and http://necoro.wordpress.com/2009/10/08/managing-your-configuration-files-with-git-and-stgit/
 alias dotfiles='git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
