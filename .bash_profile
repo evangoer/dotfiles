@@ -9,6 +9,7 @@ PATH=$PATH:/usr/bin:/usr/sbin
 [ -d /bin ] && PATH=/bin:$PATH
 [ -d /usr/local ] && PATH=/usr/local/bin:/usr/local/sbin:$PATH
 [ -d /usr/texbin ] && PATH=/usr/texbin:$PATH
+[ -d ~/dev/sprox/bin ] && PATH=~/dev/sprox/bin:$PATH
 
 # Paths for various package managers
 if [ -d /opt/local ]; then 
@@ -21,6 +22,8 @@ fi
 
 export PATH
 
+# local::lib (CPAN)
+[ $SHLVL -eq 1 ] && eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 
 export OS_TENANT_NAME=csi-tenant-egoer
 export OS_AUTH_URL=https://mr-keystone.isg.apple.com:5000/v2.0/
