@@ -31,6 +31,10 @@ export OS_USERNAME=$USER
 
 set -o vi
 
+if [ -f ~/.git-completion.bash ]; then 
+    . ~/.git-completion.bash
+fi
+
 function branch() {
     BRANCH=`git branch 2>/dev/null | grep '\*' | awk '{print $2}'`
     [[ $BRANCH != '' ]] && echo "on $BRANCH "
