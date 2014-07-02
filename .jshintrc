@@ -10,7 +10,6 @@
         "before",
         "beforeEach",
         "describe",
-        "expect",
         "it"
     ],
     "immed": true,
