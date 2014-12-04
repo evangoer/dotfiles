@@ -1,6 +1,6 @@
 [user]
     name = Evan Goer
-    email = evan@goer.org
+    email = egoer@apple.com
 [core]
     excludesfile = ~/.gitignore_global
     autocrlf = input
