@@ -49,7 +49,31 @@ function virtual() {
   [[ $RVM_PROMPT != '' ]] && echo "[$RVM_PROMPT]"
 }
 
-PS1='\t ${ALT_USER}\h$(virtual):\w $(branch)\$ '
+function salads_required() {
+    declare -i WEEK_START SALAD SALAD_COUNT
+    local WEEK_START=`date +%s`-60*60*24*7
+    local SALAD_COUNT=3
+    local SALAD_DB=~/.salad
+    local SALAD=0
+
+    while read SALAD; do
+        declare -i SALAD
+        if [ $WEEK_START -lt $SALAD ]; then
+            SALAD_COUNT=$SALAD_COUNT-1
+        fi
+        if [ $SALAD_COUNT -lt 1 ]; then
+            break
+        fi
+    done < $SALAD_DB
+
+    for ((i=0; i<SALAD_COUNT; i++)); do
+        SALAD_STR=${SALAD_STR}s
+    done
+
+    [[ -n $SALAD_STR ]] && echo " $SALAD_STR"
+}
+
+PS1='\t$(salads_required) ${ALT_USER}\h$(virtual):\w $(branch)\$ '
 
 export EDITOR=vim
 export CLICOLOR=true
