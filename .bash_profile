@@ -67,7 +67,7 @@ function salads_required() {
     done < $SALAD_DB
 
     for ((i=0; i<SALAD_COUNT; i++)); do
-        SALAD_STR=${SALAD_STR}s
+        SALAD_STR=${SALAD_STR}🌿
     done
 
     [[ -n $SALAD_STR ]] && echo " $SALAD_STR"
