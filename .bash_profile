@@ -18,8 +18,10 @@ if [ -d /opt/local ]; then
     [ -d /opt/local/apache2/bin ] && PATH=/opt/local/apache2/bin:$PATH
     export MANPATH=/opt/local/man:/opt/local/share/man:$MANPATH
 fi
-[ -d $HOME/.rvm/bin ] && PATH=$HOME/.rvm/bin:$PATH
 
+# Ruby
+[ -d $HOME/.rvm/bin ] && PATH=$HOME/.rvm/bin:$PATH
+[ -d ~/.rbenv/bin ] && PATH=$HOME/.rbenv/bin:$PATH && eval "$(rbenv init -)"
 export PATH
 
 # local::lib (CPAN)
