@@ -3,6 +3,7 @@
     "curly": true,
     "devel": true,
     "eqeqeq": true,
+    "esnext": true,
     "forin": true,
     "predef": [
         "after",
