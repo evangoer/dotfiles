@@ -1,3 +1,5 @@
+execute pathogen#infect()
+
 syntax on
 
 " Detect filetypes & set indent style, plugins, filetype overrides
@@ -60,3 +62,13 @@ endfunction
 
 " strip whitespace from EOL, preserving state
 nmap _$ :call Preserve("%s/\\s\\+$//e")
+
+" syntastic: beginner settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
