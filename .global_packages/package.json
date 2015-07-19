@@ -1,0 +1,20 @@
+{
+  "name": "dotfiles",
+  "version": "1.0.0",
+  "description": "Manifest of *global* npm packages required to support dotfiles",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/evangoer/dotfiles.git"
+  },
+  "keywords": [
+    "dotfiles",
+    "npm"
+  ],
+  "author": "Evan Goer",
+  "license": "ISC",
+  "dependencies": {
+    "babel-eslint": "^3.1.23",
+    "eslint": "^0.24.1",
+    "eslint-plugin-react": "^2.7.1"
+  }
+}
