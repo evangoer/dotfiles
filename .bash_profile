@@ -11,6 +11,9 @@ PATH=$PATH:/usr/bin:/usr/sbin
 [ -d /usr/texbin ] && PATH=/usr/texbin:$PATH
 [ -d ~/dev/sprox/bin ] && PATH=~/dev/sprox/bin:$PATH
 
+# Swift
+[ -d /Library/Developer/Toolchains/swift-latest.xctoolchain ] && PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:$PATH
+
 # Paths for various package managers
 if [ -d /opt/local ]; then 
     PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
