@@ -23,7 +23,6 @@ set ts=4 sts=4 sw=4 expandtab
 " Display invisibles (just barely)
 set list
 set listchars=tab:▸\ ,eol:¬
-let g:solarized_visibility="low"
 
 " Make tab completion behave more like the shell.
 set wildmode=longest,list
@@ -38,14 +37,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" Use solarized, with hack for OS X 10.6 terminals that lack 256 colors
-if $TERM=="xterm-color"
-    color desert
-else
-    set t_Co=256
-    set background=dark
-    color solarized
-endif
+" Set colorscheme
+set t_Co=256
+color apprentice
 
 " http://technotales.wordpress.com/2010/03/31/preserve-a-vim-function-that-keeps-your-state/
 function! Preserve(command)
