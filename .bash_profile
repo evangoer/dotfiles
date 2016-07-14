@@ -11,6 +11,9 @@ PATH=$PATH:/usr/bin:/usr/sbin
 [ -d /usr/texbin ] && PATH=/usr/texbin:$PATH
 [ -d ~/dev/sprox/bin ] && PATH=~/dev/sprox/bin:$PATH
 
+# Swift
+[ -d /Library/Developer/Toolchains/swift-latest.xctoolchain ] && PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:$PATH
+
 # Paths for various package managers
 if [ -d /opt/local ]; then 
     PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
@@ -18,8 +21,10 @@ if [ -d /opt/local ]; then
     [ -d /opt/local/apache2/bin ] && PATH=/opt/local/apache2/bin:$PATH
     export MANPATH=/opt/local/man:/opt/local/share/man:$MANPATH
 fi
-[ -d $HOME/.rvm/bin ] && PATH=$HOME/.rvm/bin:$PATH
 
+# Ruby
+[ -d $HOME/.rvm/bin ] && PATH=$HOME/.rvm/bin:$PATH
+[ -d ~/.rbenv/bin ] && PATH=$HOME/.rbenv/bin:$PATH && eval "$(rbenv init -)"
 export PATH
 
 # local::lib (CPAN)
@@ -49,7 +54,31 @@ function virtual() {
   [[ $RVM_PROMPT != '' ]] && echo "[$RVM_PROMPT]"
 }
 
-PS1='\t ${ALT_USER}\h$(virtual):\w $(branch)\$ '
+function salads_required() {
+    declare -i WEEK_START SALAD SALAD_COUNT
+    local WEEK_START=`date +%s`-60*60*24*7
+    local SALAD_COUNT=3
+    local SALAD_DB=~/.salad
+    local SALAD=0
+
+    while read SALAD; do
+        declare -i SALAD
+        if [ $WEEK_START -lt $SALAD ]; then
+            SALAD_COUNT=$SALAD_COUNT-1
+        fi
+        if [ $SALAD_COUNT -lt 1 ]; then
+            break
+        fi
+    done < $SALAD_DB
+
+    for ((i=0; i<SALAD_COUNT; i++)); do
+        SALAD_STR=${SALAD_STR}🌿
+    done
+
+    [[ -n $SALAD_STR ]] && echo " $SALAD_STR"
+}
+
+PS1='\t$(salads_required) ${ALT_USER}\h$(virtual):\w $(branch)\$ '
 
 export EDITOR=vim
 export CLICOLOR=true
