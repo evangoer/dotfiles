@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_r_lint_checker")
+if exists('g:loaded_syntastic_r_lint_checker')
     finish
 endif
 let g:loaded_syntastic_r_lint_checker = 1
@@ -28,10 +28,10 @@ set cpo&vim
 
 function! SyntaxCheckers_r_lint_GetHighlightRegex(item)
     let term = matchstr(a:item['text'], '\m`\zs[^`]\+\ze`')
-    if term == ''
+    if term ==# ''
         let term = matchstr(a:item['text'], "\\m'\\zs[^']\\+\\ze'")
     endif
-    return term != '' ? '\V' . escape(term, '\') : ''
+    return term !=# '' ? '\V' . escape(term, '\') : ''
 endfunction
 
 function! SyntaxCheckers_r_lint_IsAvailable() dict
@@ -44,7 +44,6 @@ endfunction
 
 function! SyntaxCheckers_r_lint_GetLocList() dict
     let setwd = syntastic#util#isRunningWindows() ? 'setwd("' . escape(getcwd(), '"\') . '"); ' : ''
-    let setwd = 'setwd("' . escape(getcwd(), '"\') . '"); '
     let makeprg = self.getExecEscaped() . ' --slave --restore --no-save' .
         \ ' -e ' . syntastic#util#shescape(setwd . 'library(lint); ' .
         \       'try(lint(commandArgs(TRUE), ' . g:syntastic_r_lint_styles . '))') .
