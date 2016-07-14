@@ -9,9 +9,6 @@ PATH=$PATH:/usr/bin:/usr/sbin
 [ -d /bin ] && PATH=/bin:$PATH
 [ -d /usr/local ] && PATH=/usr/local/bin:/usr/local/sbin:$PATH
 [ -d /usr/texbin ] && PATH=/usr/texbin:$PATH
-[ -d ~/dev/sprox/bin ] && PATH=~/dev/sprox/bin:$PATH
-
-# Swift
 [ -d /Library/Developer/Toolchains/swift-latest.xctoolchain ] && PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:$PATH
 
 # Paths for various package managers
@@ -22,9 +19,6 @@ if [ -d /opt/local ]; then
     export MANPATH=/opt/local/man:/opt/local/share/man:$MANPATH
 fi
 
-# Ruby
-[ -d $HOME/.rvm/bin ] && PATH=$HOME/.rvm/bin:$PATH
-[ -d ~/.rbenv/bin ] && PATH=$HOME/.rbenv/bin:$PATH && eval "$(rbenv init -)"
 export PATH
 
 # local::lib (CPAN)
@@ -48,12 +42,6 @@ function branch() {
 # If I'm not 'evan' or 'goer', display user@ in the prompt
 ALT_USER=''; [[ `whoami` != 'evan' && `whoami` != 'egoer' ]] && ALT_USER=`whoami`@
 
-# Indicate whether we're in a chroot, virtualenv, rvm, etc.
-function virtual() {
-  RVM_PROMPT=`rvm-prompt v g 2>/dev/null`
-  [[ $RVM_PROMPT != '' ]] && echo "[$RVM_PROMPT]"
-}
-
 function salads_required() {
     if [ ! -f ~/.salad ]; then
         return 0
@@ -64,7 +52,6 @@ function salads_required() {
     local SALAD_COUNT=3
     local SALAD_DB=~/.salad
     local SALAD=0
-
 
     while read SALAD; do
         declare -i SALAD
@@ -83,7 +70,7 @@ function salads_required() {
     [[ -n $SALAD_STR ]] && echo " $SALAD_STR"
 }
 
-PS1='\t$(salads_required) ${ALT_USER}\h$(virtual):\w $(branch)\$ '
+PS1='\t$(salads_required) ${ALT_USER}\h:\w $(branch)\$ '
 
 export EDITOR=vim
 export CLICOLOR=true
