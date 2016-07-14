@@ -2,6 +2,7 @@
     "parser": "babel-eslint",
     "env": {
         "browser": true,
+        "mocha": true,
         "node": true
     },
     "settings": {
@@ -14,7 +15,6 @@
     "rules": {
         "brace-style": [2, "1tbs", { "allowSingleLine": true }],
         "camelcase": 0,
-        "comma-dangle": [2, "never"],
         "curly": 2,
         "eqeqeq": 2,
         "guard-for-in": 2,
@@ -24,6 +24,7 @@
         "no-plusplus": 2,
         "no-use-before-define": 2,
         "no-undef": 2,
+        "no-unreachable": 2,
         "react/jsx-no-undef": 1,
         "react/jsx-uses-react": 1,
         "react/jsx-uses-vars": 1,
