@@ -55,11 +55,16 @@ function virtual() {
 }
 
 function salads_required() {
+    if [ ! -f ~/.salad ]; then
+        return 0
+    fi
+
     declare -i WEEK_START SALAD SALAD_COUNT
     local WEEK_START=`date +%s`-60*60*24*7
     local SALAD_COUNT=3
     local SALAD_DB=~/.salad
     local SALAD=0
+
 
     while read SALAD; do
         declare -i SALAD
