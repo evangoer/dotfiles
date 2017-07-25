@@ -21,9 +21,6 @@ fi
 
 export PATH
 
-# local::lib (CPAN)
-[ $SHLVL -eq 1 ] && eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
-
 export OS_TENANT_NAME=csi-tenant-egoer
 export OS_AUTH_URL=https://mr-keystone.isg.apple.com:5000/v2.0/
 export OS_USERNAME=$USER
