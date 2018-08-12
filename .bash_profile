@@ -69,11 +69,12 @@ function salads_required() {
 
 PS1='\t$(salads_required) ${ALT_USER}\h:\w $(branch)\$ '
 
-export EDITOR=vim
+export EDITOR=nvim
 export CLICOLOR=true
 export GREP_OPTIONS='--color=auto'
 
-alias vi=vim
+alias vi=nvim
+alias vim=nvim
 alias :q=exit 
 alias ZZ=exit 
 
