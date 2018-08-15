@@ -32,6 +32,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Clear search highlighting on ESC
+nnoremap <esc> :noh<return><esc>
+
 " Set colorscheme
 set t_Co=256
 color apprentice
