@@ -21,6 +21,8 @@ fi
 
 export PATH
 
+export GOPATH=$HOME
+
 export OS_TENANT_NAME=csi-tenant-egoer
 export OS_AUTH_URL=https://mr-keystone.isg.apple.com:5000/v2.0/
 export OS_USERNAME=$USER
