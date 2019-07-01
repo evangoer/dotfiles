@@ -13,7 +13,7 @@ PATH=$PATH:/usr/bin:/usr/sbin
 
 # Paths for various package managers
 if [ -d /opt/local ]; then 
-    PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
+    PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/3.6/bin:$PATH
     [ -d /opt/local/lib/mysql55/bin ] && PATH=/opt/local/lib/mysql55/bin:$PATH
     [ -d /opt/local/apache2/bin ] && PATH=/opt/local/apache2/bin:$PATH
     export MANPATH=/opt/local/man:/opt/local/share/man:$MANPATH
