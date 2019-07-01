@@ -26,6 +26,9 @@ set ts=4 sts=4 sw=4 expandtab
 set list
 set listchars=tab:▸\ ,eol:¬
 
+" Make tab completion behave more like the shell.
+set wildmode=longest,list
+
 " Make window splits behave as readers of English might expect
 set splitbelow
 set splitright
