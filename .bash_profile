@@ -13,13 +13,15 @@ PATH=$PATH:/usr/bin:/usr/sbin
 
 # Paths for various package managers
 if [ -d /opt/local ]; then 
-    PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
+    PATH=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/3.6/bin:$PATH
     [ -d /opt/local/lib/mysql55/bin ] && PATH=/opt/local/lib/mysql55/bin:$PATH
     [ -d /opt/local/apache2/bin ] && PATH=/opt/local/apache2/bin:$PATH
     export MANPATH=/opt/local/man:/opt/local/share/man:$MANPATH
 fi
 
 export PATH
+
+export GOPATH=$HOME
 
 export OS_TENANT_NAME=csi-tenant-egoer
 export OS_AUTH_URL=https://mr-keystone.isg.apple.com:5000/v2.0/
@@ -101,3 +103,7 @@ fi
 export PATH="/usr/local/heroku/bin:$PATH"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
