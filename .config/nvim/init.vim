@@ -19,7 +19,7 @@ set bs=2
 set ignorecase
 set textwidth=80
 
-" Default soft tabs, 4 spaces
+" Default soft tabs, 2 spaces
 set ts=2 sts=2 sw=2 expandtab
 
 " Display invisibles (just barely)
@@ -45,6 +45,10 @@ nnoremap <esc> :noh<return><esc>
 " Set colorscheme
 set t_Co=256
 color apprentice
+
+" Smoother inline linting: faster refreshes, no jank when errors detected
+set updatetime=300
+set signcolumn=yes
 
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
