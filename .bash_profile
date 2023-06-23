@@ -7,7 +7,6 @@
 PATH=$PATH:/usr/bin:/usr/sbin
 [ -d /sbin ] && PATH=/sbin:$PATH
 [ -d /bin ] && PATH=/bin:$PATH
-[ -d /usr/local ] && PATH=/usr/local/bin:/usr/local/sbin:$PATH
 [ -d /usr/texbin ] && PATH=/usr/texbin:$PATH
 [ -d /Library/Developer/Toolchains/swift-latest.xctoolchain ] && PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:$PATH
 
@@ -18,6 +17,9 @@ if [ -d /opt/local ]; then
     [ -d /opt/local/apache2/bin ] && PATH=/opt/local/apache2/bin:$PATH
     export MANPATH=/opt/local/man:/opt/local/share/man:$MANPATH
 fi
+
+# Let Homebrew win over MacPorts
+[ -d /usr/local ] && PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 export PATH
 
