@@ -16,7 +16,7 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '▸ ', eol = '¬' }
 
 -- Make tab completion behave more like the shell.
-vim.opt.wildmode = 'longest,list'
+vim.opt.wildmode = 'list:longest,full'
 
 -- Make window splits behave as readers of English might expect
 vim.opt.splitbelow = true
