@@ -1,39 +1,72 @@
-export PATH=/opt/local/bin:~/.npm-global/bin:$PATH
+# ~/.zshrc - Minimal, resilient shell configuration
 
-alias vi=nvim
+#=============================================================================
+# SECTION 1: Always works (no external dependencies)
+#=============================================================================
+
+# History
+HISTSIZE=50000
+SAVEHIST=50000
+HISTFILE=~/.zsh_history
+setopt share_history
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+
+# Basic options
+setopt auto_cd
+setopt interactive_comments
+
+# Completions (built into zsh)
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# Key bindings
+bindkey -e  # emacs mode (or -v for vim)
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+
+#=============================================================================
+# SECTION 2: mise-managed tools (resilient - survives OS upgrades)
+#=============================================================================
+
+# mise activation (provides node, python, nvim, starship, fzf, uv)
+if [[ -f /opt/local/bin/mise ]]; then
+  eval "$(/opt/local/bin/mise activate zsh)"
+fi
+
+# Starship prompt (installed via mise)
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+# fzf integration (installed via mise)
+if command -v fzf &> /dev/null; then
+  eval "$(fzf --zsh)"
+fi
+
 alias vim=nvim
-alias :q=exit
-alias ZZ=exit
 
-# TODO clean out dotfiles for home, work (or at least home)
-# Scheme for managing dotfiles via git without making ~ a git repo.
-# When updating dotfiles, use 'dotfiles <gitcmd>', not 'git <gitcmd>'.
-# When adding a NEW dotfile, use the -f option (force) since by default, all files are ignored.
-#
-# 1. git clone git@github.com:evangoer/dotfiles.git
-# 2. mv dotfiles/.git ~/.dotfiles.git
-# 3. [optional] avoid clobbering old dotfiles (copy or rename as necessary)
-# 4. cp -R dotfiles/.* ~
-#
-# Derived from http://silas.sewell.org/blog/2009/03/08/profile-management-with-git-and-github/
-# and http://necoro.wordpress.com/2009/10/08/managing-your-configuration-files-with-git-and-stgit/
-alias dotfiles='git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
+#=============================================================================
+# SECTION 3: Optional enhancements (may break after OS upgrade, non-critical)
+#=============================================================================
 
-# TODO evaluate for zshrc
-#
-# FZF setup?
-# eval "$(fzf --bash)"
-#
-# Git completion needed?
-# if [ -f ~/.git-completion.bash ]; then 
-#     . ~/.git-completion.bash
-# fi
-#
-#
-# How many of these do I need? 
-# export EDITOR=nvim
-# export CLICOLOR=true
-# export GREP_OPTIONS='--color=auto'
-#
-# Do I still want this?
-# set -o vi
+# MacPorts (rebuild after OS upgrades with: sudo port selfupdate && sudo port upgrade outdated)
+if [[ -d /opt/local/bin ]]; then
+  export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+fi
+
+# zsh plugins (cloned to ~/.zsh/, no package manager dependency)
+[[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && \
+  source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && \
+  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+#=============================================================================
+# SECTION 4: Local customizations
+#=============================================================================
+
+# Machine-specific config (not checked into dotfiles)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
