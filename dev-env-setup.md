@@ -23,7 +23,7 @@ This document covers setting up a modern, resilient development environment on m
 ┌─────────────────────────────────────────────────────────────────┐
 │ Layer 2: mise-managed tools (~/.local/share/mise/)              │
 │   - Survives OS upgrades (prebuilt binaries in home dir)        │
-│   - node, python, uv, neovim, starship, fzf, stow               │
+│   - node, python, uv, neovim, starship, fzf, tree-sitter, stow   │
 └─────────────────────────────────────────────────────────────────┘
          │
          ▼
@@ -66,6 +66,7 @@ mise use -g uv                # Python package/venv manager
 mise use -g neovim@stable     # nvim (not dependent on MacPorts)
 mise use -g starship          # Prompt
 mise use -g fzf               # Fuzzy finder
+mise use -g tree-sitter       # Needed by nvim-treesitter to compile parsers
 TODO mise use -g stow              # Dotfile management
 
 # Verify
@@ -313,6 +314,7 @@ vim.cmd('colorscheme tokyonight')
 
 -- Completion (blink.cmp)
 require('blink.cmp').setup({
+  fuzzy = { implementation = 'lua' },
   keymap = { preset = 'default' },
   sources = {
     default = { 'lsp', 'path', 'buffer', 'snippets' },
@@ -323,63 +325,45 @@ require('blink.cmp').setup({
   signature = { enabled = true },
 })
 
--- LSP: shared capabilities from blink.cmp
-local capabilities = require('blink.cmp').get_lsp_capabilities()
-
--- LSP: TypeScript
-require('lspconfig').ts_ls.setup({
-  capabilities = capabilities,
+-- LSP: shared capabilities from blink.cmp, applied to all servers
+vim.lsp.config('*', {
+  capabilities = require('blink.cmp').get_lsp_capabilities(),
 })
 
--- LSP: Python (pyright)
-require('lspconfig').pyright.setup({
-  capabilities = capabilities,
-})
-
--- LSP: Ruff (Python linting/formatting, optional addition to pyright)
-require('lspconfig').ruff.setup({
-  capabilities = capabilities,
-})
-
--- LSP keymaps (set up when LSP attaches to buffer)
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
-    local opts = { buffer = args.buf }
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-  end,
-})
-
--- Treesitter
-require('nvim-treesitter.configs').setup({
-  ensure_installed = {
-    'javascript', 'typescript', 'tsx',
-    'python',
-    'lua', 'vim', 'vimdoc',
-    'json', 'yaml', 'toml', 'markdown',
-    'html', 'css',
-    'bash',
-  },
-  highlight = { enable = true },
-  indent = { enable = true },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-      },
+-- LSP: ts_ls needs to know where mise installed the typescript library
+vim.lsp.config('ts_ls', {
+  init_options = {
+    tsserver = {
+      path = vim.fn.expand('~/.local/share/mise/installs/npm-typescript/latest/lib/node_modules/typescript'),
     },
   },
 })
+
+vim.lsp.enable({ 'ts_ls', 'pyright', 'ruff' })
+
+-- LSP keymaps: nvim 0.11 provides these as built-in defaults:
+--   K          hover docs
+--   grn        rename
+--   gra        code action
+--   grr        references
+--   gri        implementation
+--   gO         document symbols
+--   [d / ]d    prev/next diagnostic
+--   CTRL-]     go to definition
+
+-- Treesitter: highlighting and indent are built into nvim 0.11.
+-- Install parsers with :TSInstall <lang> (requires tree-sitter CLI via mise)
+-- Check parser status with :checkhealth nvim-treesitter
+
+-- Textobjects
+require('nvim-treesitter-textobjects').setup({
+  select = { lookahead = true },
+})
+local ts_select = require('nvim-treesitter-textobjects.select')
+vim.keymap.set({ 'x', 'o' }, 'af', function() ts_select.select_textobject('@function.outer') end)
+vim.keymap.set({ 'x', 'o' }, 'if', function() ts_select.select_textobject('@function.inner') end)
+vim.keymap.set({ 'x', 'o' }, 'ac', function() ts_select.select_textobject('@class.outer') end)
+vim.keymap.set({ 'x', 'o' }, 'ic', function() ts_select.select_textobject('@class.inner') end)
 
 -- fzf-lua (fuzzy finding)
 local fzf = require('fzf-lua')
@@ -421,9 +405,9 @@ Install plugins and LSP servers:
 # Install vim plugins
 nvim +PlugInstall +qall
 
-# Install treesitter parsers (run inside nvim)
-# :TSInstall all
-# Or they'll install automatically when you open files
+# Install treesitter parsers (run inside nvim, requires tree-sitter CLI)
+# :TSInstall javascript typescript tsx python lua vim vimdoc json yaml toml markdown html css bash
+# Check status with :checkhealth nvim-treesitter
 
 # Install LSP servers via mise (already in config.toml, but can also run directly)
 mise use -g "npm:typescript-language-server"
@@ -653,6 +637,7 @@ uv = "latest"
 neovim = "stable"
 starship = "latest"
 fzf = "latest"
+tree-sitter = "latest"
 stow = "latest"
 ruff = "latest"
 
@@ -876,6 +861,7 @@ Plugins that are likely superseded:
 
 # nvim state (not version controlled)
 ~/.local/share/nvim/plugged/      # vim-plug plugins
+~/.local/share/nvim/site/parser/  # treesitter compiled parsers
 ~/.local/share/nvim/undo/         # nvim undo history
 
 # zsh plugins (git cloned, could also be in dotfiles)
@@ -899,19 +885,26 @@ export PATH="$HOME/.local/bin:$PATH"
 **LSP not working**:
 
 ```zsh
-# Check if LSP servers are installed
+# Check if LSP servers are installed and in PATH
 which typescript-language-server
 which pyright
+which ruff
 
-# Check LSP status in nvim
-:LspInfo
+# Check LSP status in nvim (open a file of the relevant type first)
+:checkhealth lsp
 ```
 
 **Treesitter highlighting broken**:
 
-```vim
-:TSInstall all
-:TSUpdate
+```zsh
+# Treesitter parsers require the tree-sitter CLI to compile
+which tree-sitter   # if missing: mise use -g tree-sitter
+
+# Check parser status in nvim
+:checkhealth nvim-treesitter
+
+# Reinstall parsers
+:TSInstall javascript typescript tsx python lua vim vimdoc json yaml toml markdown html css bash
 ```
 
 **MacPorts completely broken after OS upgrade**:
