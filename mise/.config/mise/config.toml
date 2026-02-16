@@ -1,0 +1,12 @@
+[tools]
+fzf = "latest"
+neovim = "stable"
+node = "lts"
+"npm:typescript-language-server" = "latest"
+python = "3.12"
+starship = "latest"
+uv = "latest"
+"npm:typescript" = "latest"
+"npm:pyright" = "latest"
+ruff = "latest"
+tree-sitter = "latest"
