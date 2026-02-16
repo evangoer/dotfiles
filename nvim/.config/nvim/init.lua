@@ -39,3 +39,79 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.opt.updatetime = 300
 vim.opt.signcolumn = 'yes'
 
+local Plug = vim.fn['plug#']
+vim.call('plug#begin', '~/.local/share/nvim/plugged')
+Plug('romainl/Apprentice') -- Colorscheme
+Plug('neovim/nvim-lspconfig')
+Plug('saghen/blink.cmp') -- Completion
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' }) -- Syntax highlighting
+Plug('nvim-treesitter/nvim-treesitter-textobjects') 
+Plug('ibhagwan/fzf-lua') -- Fuzzy finding
+Plug('stevearc/conform.nvim') -- Formatting and linting
+vim.call('plug#end')
+
+vim.cmd('colorscheme apprentice')
+
+require('blink.cmp').setup({
+  fuzzy = { implementation = 'lua' },
+  keymap = { preset = 'default' },
+  sources = {
+    default = { 'lsp', 'path', 'buffer', 'snippets' },
+  },
+  completion = {
+    documentation = { auto_show = true },
+  },
+  signature = { enabled = true },
+})
+
+-- LSP: shared capabilities from blink.cmp, applied to all servers
+vim.lsp.config('*', {
+  capabilities = require('blink.cmp').get_lsp_capabilities(),
+})
+vim.lsp.config('ts_ls', {
+  init_options = {
+    tsserver = {
+      path = vim.fn.expand('~/.local/share/mise/installs/npm-typescript/latest/lib/node_modules/typescript'),
+    },
+  },
+})
+vim.lsp.enable({ 'ts_ls', 'pyright', 'ruff' })
+
+-- Treesitter: highlighting and indent are built into nvim 0.11.
+-- Install parsers with :TSInstall <lang> (e.g. :TSInstall javascript python lua)
+
+-- Textobjects
+require('nvim-treesitter-textobjects').setup({
+  select = { lookahead = true },
+})
+local ts_select = require('nvim-treesitter-textobjects.select')
+vim.keymap.set({ 'x', 'o' }, 'af', function() ts_select.select_textobject('@function.outer') end)
+vim.keymap.set({ 'x', 'o' }, 'if', function() ts_select.select_textobject('@function.inner') end)
+vim.keymap.set({ 'x', 'o' }, 'ac', function() ts_select.select_textobject('@class.outer') end)
+vim.keymap.set({ 'x', 'o' }, 'ic', function() ts_select.select_textobject('@class.inner') end)
+
+-- fzf-lua (fuzzy finding)
+local fzf = require('fzf-lua')
+vim.keymap.set('n', '<leader>ff', fzf.files, { desc = 'Find files' })
+vim.keymap.set('n', '<leader>fg', fzf.live_grep, { desc = 'Live grep' })
+vim.keymap.set('n', '<leader>fb', fzf.buffers, { desc = 'Buffers' })
+vim.keymap.set('n', '<leader>fh', fzf.help_tags, { desc = 'Help tags' })
+vim.keymap.set('n', '<leader>fr', fzf.oldfiles, { desc = 'Recent files' })
+vim.keymap.set('n', '<leader>fs', fzf.lsp_document_symbols, { desc = 'Document symbols' })
+
+require('conform').setup({
+  formatters_by_ft = {
+    javascript = { 'prettier' },
+    typescript = { 'prettier' },
+    typescriptreact = { 'prettier' },
+    javascriptreact = { 'prettier' },
+    json = { 'prettier' },
+    yaml = { 'prettier' },
+    markdown = { 'prettier' },
+    python = { 'ruff_format' },
+  },
+  format_on_save = {
+    timeout_ms = 500,
+    lsp_fallback = true,
+  },
+})
