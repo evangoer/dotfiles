@@ -1,4 +1,5 @@
 -- Bread and butter settings.
+vim.g.mapleader = ' '
 vim.opt.autoread = true
 vim.opt.number = true
 vim.opt.backspace = 'indent,eol,start'
