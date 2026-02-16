@@ -92,6 +92,12 @@ vim.keymap.set({ 'x', 'o' }, 'ic', function() ts_select.select_textobject('@clas
 
 -- fzf-lua (fuzzy finding)
 local fzf = require('fzf-lua')
+fzf.setup({
+  grep = {
+    -- Search hidden files (dotfiles), but still skip .git/
+    rg_opts = '--hidden --glob "!.git/" --column --line-number --no-heading --color=always --smart-case --max-columns=4096',
+  },
+})
 vim.keymap.set('n', '<leader>ff', fzf.files, { desc = 'Find files' })
 vim.keymap.set('n', '<leader>fg', fzf.live_grep, { desc = 'Live grep' })
 vim.keymap.set('n', '<leader>fb', fzf.buffers, { desc = 'Buffers' })
