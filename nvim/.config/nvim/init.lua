@@ -55,7 +55,10 @@ vim.cmd('colorscheme apprentice')
 
 require('blink.cmp').setup({
   fuzzy = { implementation = 'lua' },
-  keymap = { preset = 'default' },
+  keymap = {
+    preset = 'super-tab',
+    ['<CR>'] = { 'accept', 'fallback' },
+  },
   sources = {
     default = { 'lsp', 'path', 'buffer', 'snippets' },
   },
