@@ -53,6 +53,11 @@ alias vim=nvim
 # SECTION 3: Optional enhancements (may break after OS upgrade, non-critical)
 #=============================================================================
 
+# Misc user tools not managed by mise or ports (Claude Code)
+if [[ -d ~/.local/bin ]]; then
+  export PATH="/Users/evan/.local/bin:$PATH"
+fi
+
 # MacPorts (rebuild after OS upgrades with: sudo port selfupdate && sudo port upgrade outdated)
 if [[ -d /opt/local/bin ]]; then
   export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
