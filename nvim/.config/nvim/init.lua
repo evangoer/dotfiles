@@ -4,6 +4,7 @@ vim.opt.autoread = true
 vim.opt.number = true
 vim.opt.backspace = 'indent,eol,start'
 vim.opt.textwidth = 80
+vim.opt.hidden = true -- (explicit default)
 
 -- Base search
 vim.opt.ignorecase = true -- /word matches: word WORD Word
