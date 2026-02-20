@@ -67,7 +67,7 @@ mise use -g neovim@stable     # nvim (not dependent on MacPorts)
 mise use -g starship          # Prompt
 mise use -g fzf               # Fuzzy finder
 mise use -g tree-sitter       # Needed by nvim-treesitter to compile parsers
-TODO mise use -g stow              # Dotfile management
+mise use -g stow              # Dotfile management
 
 # Verify
 which node     # should be ~/.local/share/mise/installs/...
