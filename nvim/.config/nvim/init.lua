@@ -5,6 +5,7 @@ vim.opt.number = true
 vim.opt.backspace = 'indent,eol,start'
 vim.opt.textwidth = 80
 vim.opt.hidden = true -- (explicit default)
+vim.opt.swapfile = false -- not useful once in 20 years
 
 -- Base search
 vim.opt.ignorecase = true -- /word matches: word WORD Word
