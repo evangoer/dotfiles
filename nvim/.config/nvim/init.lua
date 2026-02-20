@@ -5,7 +5,11 @@ vim.opt.number = true
 vim.opt.backspace = 'indent,eol,start'
 vim.opt.textwidth = 80
 vim.opt.hidden = true -- (explicit default)
+
+-- Recovery
 vim.opt.swapfile = false -- not useful once in 20 years
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.expand('~/.local/share/nvim/undo')
 
 -- Base search
 vim.opt.ignorecase = true -- /word matches: word WORD Word
