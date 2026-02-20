@@ -3,8 +3,13 @@ vim.g.mapleader = ' '
 vim.opt.autoread = true
 vim.opt.number = true
 vim.opt.backspace = 'indent,eol,start'
-vim.opt.ignorecase = true
 vim.opt.textwidth = 80
+
+-- Base search
+vim.opt.ignorecase = true -- /word matches: word WORD Word
+vim.opt.smartcase = true --  /WoRd matches: WoRd
+vim.opt.incsearch = true -- show all matches incrementally
+vim.opt.hlsearch = true -- highlight matches (explicit default)
 
 -- Default soft tabs, 2 spaces
 vim.opt.tabstop = 2
