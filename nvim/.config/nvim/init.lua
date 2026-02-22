@@ -5,7 +5,6 @@ vim.opt.number = true
 vim.opt.backspace = 'indent,eol,start'
 vim.opt.textwidth = 80
 vim.opt.hidden = true -- (explicit default)
-vim.opt.termguicolors = true
 
 -- Recovery
 vim.opt.swapfile = false -- not useful once in 20 years
@@ -13,8 +12,7 @@ vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand('~/.local/share/nvim/undo')
 
 -- Base search
-vim.opt.ignorecase = true
-vim.opt.termguicolors = true -- /word matches: word WORD Word
+vim.opt.ignorecase = true -- /word matches: word WORD Word
 vim.opt.smartcase = true --  /WoRd matches: WoRd
 vim.opt.incsearch = true -- show all matches incrementally
 vim.opt.hlsearch = true -- highlight matches (explicit default)
@@ -32,6 +30,7 @@ vim.opt.listchars = { tab = '▸ ', eol = '¬' }
 -- GUI
 vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamedplus'
+vim.opt.termguicolors = true
 
 -- Make tab completion behave more like the shell.
 vim.opt.wildmode = 'list:longest,full'
