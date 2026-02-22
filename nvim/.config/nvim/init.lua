@@ -5,6 +5,7 @@ vim.opt.number = true
 vim.opt.backspace = 'indent,eol,start'
 vim.opt.textwidth = 80
 vim.opt.hidden = true -- (explicit default)
+vim.opt.termguicolors = true
 
 -- Recovery
 vim.opt.swapfile = false -- not useful once in 20 years
@@ -12,7 +13,8 @@ vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand('~/.local/share/nvim/undo')
 
 -- Base search
-vim.opt.ignorecase = true -- /word matches: word WORD Word
+vim.opt.ignorecase = true
+vim.opt.termguicolors = true -- /word matches: word WORD Word
 vim.opt.smartcase = true --  /WoRd matches: WoRd
 vim.opt.incsearch = true -- show all matches incrementally
 vim.opt.hlsearch = true -- highlight matches (explicit default)
@@ -53,7 +55,7 @@ vim.opt.signcolumn = 'yes'
 
 local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.local/share/nvim/plugged')
-Plug('romainl/Apprentice') -- Colorscheme
+Plug('rebelot/kanagawa.nvim') -- Colorscheme
 Plug('neovim/nvim-lspconfig')
 Plug('saghen/blink.cmp') -- Completion
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' }) -- Syntax highlighting
@@ -62,7 +64,7 @@ Plug('ibhagwan/fzf-lua') -- Fuzzy finding
 Plug('stevearc/conform.nvim') -- Formatting and linting
 vim.call('plug#end')
 
-vim.cmd('colorscheme apprentice')
+vim.cmd('colorscheme kanagawa-dragon')
 
 require('blink.cmp').setup({
   fuzzy = { implementation = 'lua' },
