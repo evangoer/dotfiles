@@ -72,6 +72,7 @@ Plug('nvim-treesitter/nvim-treesitter-textobjects')
 Plug('ibhagwan/fzf-lua') -- Fuzzy finding
 Plug('stevearc/conform.nvim') -- Formatting and linting
 Plug('lewis6991/gitsigns.nvim')
+-- TODO: try Plug('windwp/nvim-autopairs')
 vim.call('plug#end')
 
 vim.cmd('colorscheme kanagawa-dragon')
