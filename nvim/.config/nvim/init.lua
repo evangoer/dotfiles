@@ -29,6 +29,10 @@ vim.opt.expandtab = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '▸ ', eol = '¬' }
 
+-- GUI
+vim.opt.mouse = 'a'
+vim.opt.clipboard = 'unnamedplus'
+
 -- Make tab completion behave more like the shell.
 vim.opt.wildmode = 'list:longest,full'
 
