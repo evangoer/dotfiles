@@ -53,6 +53,11 @@ vim.keymap.set('', '<C-p>', '<cmd>bprevious<CR>')
 -- Clear search highlighting on ESC
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Quicker write, quit, vsplit
+vim.keymap.set('n', '<leader>w', '<cmd>w<CR>')
+vim.keymap.set('n', '<leader>q', '<cmd>q<CR>')
+vim.keymap.set('n', '<leader>vs', '<cmd>vsp<CR>')
+
 -- Smoother inline linting: faster refreshes, no jank when errors detected
 vim.opt.updatetime = 300
 vim.opt.signcolumn = 'yes'
