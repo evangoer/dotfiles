@@ -72,6 +72,10 @@ Plug('ibhagwan/fzf-lua') -- Fuzzy finding
 Plug('stevearc/conform.nvim') -- Formatting and linting
 Plug('lewis6991/gitsigns.nvim')
 -- TODO: try Plug('windwp/nvim-autopairs')
+-- TODO: try Plug('folke/which-key.nvim')
+-- TODO: try Plug('folke/todo-comments.nvim')
+-- TODO: try Plug('mfussenegger/nvim-dap') + Plug('rcarriga/nvim-dap-ui')
+-- TODO: add more LSP keybindings (gd, K, [d, ]d, etc.)
 vim.call('plug#end')
 
 vim.cmd('colorscheme kanagawa-dragon')
