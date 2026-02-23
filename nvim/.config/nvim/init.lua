@@ -75,7 +75,6 @@ Plug('lewis6991/gitsigns.nvim')
 -- TODO: try Plug('folke/which-key.nvim')
 -- TODO: try Plug('folke/todo-comments.nvim')
 -- TODO: try Plug('mfussenegger/nvim-dap') + Plug('rcarriga/nvim-dap-ui')
--- TODO: add more LSP keybindings (gd, K, [d, ]d, etc.)
 vim.call('plug#end')
 
 vim.cmd('colorscheme kanagawa-dragon')
@@ -107,6 +106,24 @@ vim.lsp.config('ts_ls', {
   },
 })
 vim.lsp.enable({ 'ts_ls', 'pyright', 'ruff' })
+
+-- Diagnostics
+vim.diagnostic.config({
+  virtual_text = { severity = vim.diagnostic.severity.ERROR },
+  signs = true,
+  underline = true,
+  float = { border = 'rounded' },
+})
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Prev diagnostic' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Diagnostic float' })
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = 'Diagnostics to loclist' })
+
+-- LSP keybindings
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover info' })
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename symbol' })
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action' })
 
 -- Treesitter: highlighting and indent are built into nvim 0.11.
 -- Install parsers with :TSInstall <lang> (e.g. :TSInstall javascript python lua)
