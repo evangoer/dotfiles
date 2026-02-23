@@ -97,7 +97,7 @@ source ~/.zshrc
 
 ### Phase 3: nvim configuration
 
-Back up existing config:
+#### Back up existing config:
 
 ```zsh
 # Backup
@@ -105,7 +105,9 @@ cp -r ~/.config/nvim ~/.config/nvim.backup.$(date +%Y%m%d)
 cp ~/.vimrc ~/.vimrc.backup.$(date +%Y%m%d) 2>/dev/null || true
 ```
 
-Update your existing config. If using vim-plug, ensure it's installed:
+#### Update your existing config.
+
+If using vim-plug, ensure it's installed:
 
 ```zsh
 # vim-plug installation (if not present)
@@ -115,7 +117,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 Create new `~/.config/nvim/init.lua` based on [the init.lua in this repo](./nvim/.config/nvim/init.lua).
 
-Install plugins and LSP servers:
+#### Install plugins and LSP servers
 
 Install vim plugins
 ```zsh
