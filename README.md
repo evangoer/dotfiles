@@ -240,16 +240,6 @@ Note: `.stow-local-ignore` uses Perl regex syntax (hence `\.` to match literal
 dots). When this file exists, it overrides stow's defaults, so include the
 patterns above to maintain expected behavior.
 
-#### Push to GitHub
-
-```zsh
-cd ~/dotfiles
-git add -A
-git commit -m "Initial dotfiles"
-git remote add origin git@github.com:YOU/dotfiles.git
-git push -u origin main
-```
-
 #### Restoring on a new machine
 
 ```zsh
@@ -274,7 +264,7 @@ stow zsh nvim starship git
 # Install ripgrep, jq, etc. with MacPorts
 ```
 
-When upgrading macOS
+## OS Upgrades
 
 ### Before upgrade
 
