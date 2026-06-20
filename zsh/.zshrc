@@ -58,6 +58,10 @@ if [[ -d ~/.local/bin ]]; then
   export PATH="/Users/evan/.local/bin:$PATH"
 fi
 
+if [[ -d ~/.npm-global/bin ]]; then
+  export PATH="/Users/evan/.npm-global/bin:$PATH"
+fi
+
 # MacPorts (rebuild after OS upgrades with: sudo port selfupdate && sudo port upgrade outdated)
 if [[ -d /opt/local/bin ]]; then
   export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
