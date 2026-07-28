@@ -33,8 +33,16 @@ bindkey '^[[B' history-search-forward
 #=============================================================================
 
 # mise activation (provides node, python, nvim, starship, fzf, uv)
-if [[ -f /opt/local/bin/mise ]]; then
+# Location-agnostic: prefer whatever is on PATH, else common install dirs
+# (brew on the work machine, MacPorts on the home machine, curl-installer fallback).
+if command -v mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+elif [[ -x /opt/homebrew/bin/mise ]]; then
+  eval "$(/opt/homebrew/bin/mise activate zsh)"
+elif [[ -x /opt/local/bin/mise ]]; then
   eval "$(/opt/local/bin/mise activate zsh)"
+elif [[ -x $HOME/.local/bin/mise ]]; then
+  eval "$($HOME/.local/bin/mise activate zsh)"
 fi
 
 # Starship prompt (installed via mise)
@@ -48,6 +56,9 @@ if command -v fzf &> /dev/null; then
 fi
 
 alias vim=nvim
+export EDITOR=nvim
+
+export RIPGREP_CONFIG_PATH="$HOME/.config/rg/.ripgreprc"
 
 #=============================================================================
 # SECTION 3: Optional enhancements (may break after OS upgrade, non-critical)
@@ -55,11 +66,11 @@ alias vim=nvim
 
 # Misc user tools not managed by mise or ports (Claude Code)
 if [[ -d ~/.local/bin ]]; then
-  export PATH="/Users/evan/.local/bin:$PATH"
+  export PATH="$HOME/.local/bin:$PATH"
 fi
 
 if [[ -d ~/.npm-global/bin ]]; then
-  export PATH="/Users/evan/.npm-global/bin:$PATH"
+  export PATH="$HOME/.npm-global/bin:$PATH"
 fi
 
 # MacPorts (rebuild after OS upgrades with: sudo port selfupdate && sudo port upgrade outdated)
@@ -79,3 +90,4 @@ fi
 
 # Machine-specific config (not checked into dotfiles)
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+export PATH="$HOME/.claude/bin:$PATH"
