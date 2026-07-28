@@ -9,7 +9,7 @@ vim.opt.hidden = true -- (explicit default)
 -- Recovery
 vim.opt.swapfile = false -- not useful once in 20 years
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.expand('~/.local/share/nvim/undo')
+vim.opt.undodir = vim.fn.stdpath('data') .. '/undo'
 
 -- Base search
 vim.opt.ignorecase = true -- /word matches: word WORD Word
@@ -62,10 +62,10 @@ vim.opt.updatetime = 300
 vim.opt.signcolumn = 'yes'
 
 local Plug = vim.fn['plug#']
-vim.call('plug#begin', '~/.local/share/nvim/plugged')
+vim.call('plug#begin', vim.fn.stdpath('data') .. '/plugged')
 Plug('rebelot/kanagawa.nvim') -- Colorscheme
 Plug('neovim/nvim-lspconfig')
-Plug('saghen/blink.cmp') -- Completion
+Plug('saghen/blink.cmp', { ['tag'] = 'v1.*' }) -- Completion (pin v1; v2 needs a separate blink.lib plugin)
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' }) -- Syntax highlighting
 Plug('nvim-treesitter/nvim-treesitter-textobjects') 
 Plug('ibhagwan/fzf-lua') -- Fuzzy finding
