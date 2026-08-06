@@ -1,0 +1,6 @@
+# macOS Terminal profiles, imported via Terminal's UI -- never symlinked.
+# Replaces stow's built-in list rather than merging, so defaults are repeated.
+^/README.*
+.+\.terminal
+.+~
+\.git
