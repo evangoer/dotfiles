@@ -79,6 +79,10 @@ vim.call('plug#end')
 
 vim.cmd('colorscheme kanagawa-dragon')
 
+-- Filetypes where completion should stay out of the way of English prose.
+local prose_fts = { 'markdown', 'text', 'gitcommit', 'rst', 'asciidoc', 'tex', 'mail' }
+local function in_prose() return vim.list_contains(prose_fts, vim.bo.filetype) end
+
 require('blink.cmp').setup({
   fuzzy = { implementation = 'lua' },
   keymap = {
@@ -88,6 +92,9 @@ require('blink.cmp').setup({
     default = { 'lsp', 'path', 'buffer', 'snippets' },
   },
   completion = {
+    -- Nothing is selected until Tab/arrows/C-n
+    list = { selection = { preselect = false } },
+    menu = { auto_show = function() return not in_prose() end },
     documentation = { auto_show = true },
   },
   signature = { enabled = true },
