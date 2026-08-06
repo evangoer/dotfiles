@@ -1,20 +1,27 @@
 [user]
 	name = Evan Goer
-	email = evan@goer.org
 [core]
-	excludesfile = ~/.gitignore_global
-	autocrlf = input
 	editor = nvim
+	pager = delta
+	autocrlf = input
+[delta]
+	navigate = true  # use n and N to move between diff sections
 [color]
 	ui = auto
+[pull]
+	rebase = true
 [push]
 	default = simple
-[alias]
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge --skip -- %f
-	process = git-lfs filter-process --skip
-	required = true
 [init]
 	defaultBranch = main
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	clear-all = !sh ~/bin/git-clear-all.sh
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+# Machine-local: identity, signing, and any per-machine overrides.
+[include]
+	path = config.local
