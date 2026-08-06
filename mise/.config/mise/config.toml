@@ -6,7 +6,9 @@ node = "lts"
 python = "3.12"
 starship = "latest"
 uv = "latest"
-"npm:typescript" = "latest"
+# 6.x is the last JS-based line, kept for its tsserver (ts_ls fallback).
+# latest is first, so tsc stays on the native 7.x.
+"npm:typescript" = ["latest", "6"]
 "npm:pyright" = "latest"
 ruff = "latest"
 tree-sitter = "latest"
