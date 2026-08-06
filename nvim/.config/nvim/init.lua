@@ -104,12 +104,9 @@ require('blink.cmp').setup({
 vim.lsp.config('*', {
   capabilities = require('blink.cmp').get_lsp_capabilities(),
 })
+-- Global TS fallback. Needs tsserver on PATH somewhere. See mise config.
 vim.lsp.config('ts_ls', {
-  init_options = {
-    tsserver = {
-      path = vim.fn.expand('~/.local/share/mise/installs/npm-typescript/latest/lib/node_modules/typescript'),
-    },
-  },
+  init_options = { tsserver = { fallbackPath = 'tsserver' } },
 })
 vim.lsp.enable({ 'ts_ls', 'pyright', 'ruff' })
 
