@@ -69,6 +69,11 @@ if [[ -d ~/.local/bin ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Bun binary link path
+if [[ -d ~/.bun/bin ]]; then
+  export PATH="$HOME/.bun/bin:$PATH"
+fi
+
 if [[ -d ~/.npm-global/bin ]]; then
   export PATH="$HOME/.npm-global/bin:$PATH"
 fi
