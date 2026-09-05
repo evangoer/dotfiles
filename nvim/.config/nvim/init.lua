@@ -104,9 +104,13 @@ require('blink.cmp').setup({
 vim.lsp.config('*', {
   capabilities = require('blink.cmp').get_lsp_capabilities(),
 })
--- Global TS fallback. Needs tsserver on PATH somewhere. See mise config.
+-- Global TS fallback, for repos with no local typescript. Must be an absolute
+-- path to the package: a bare 'tsserver' finds mise's shim, which ts_ls can't
+-- trace back to a lib/. Pinned to 6 because 7 currently has no tsserver.js.
 vim.lsp.config('ts_ls', {
-  init_options = { tsserver = { fallbackPath = 'tsserver' } },
+  init_options = {
+    tsserver = { fallbackPath = vim.fn.expand('~/.local/share/mise/installs/npm-typescript/6/node_modules/typescript') },
+  },
 })
 vim.lsp.enable({ 'ts_ls', 'pyright', 'ruff' })
 
